@@ -45,6 +45,22 @@ Sub StockAnalysis()
         ws.Cells(1, 11).Value = "Percent Change"
         ws.Cells(1, 12).Value = "Total Volume"
         
+         
+
+    Dim sheetNames As Variant
+    Dim i As Integer
+
+    ' List of worksheet names to format
+    sheetNames = Array("Q1", "Q2", "Q3", "Q4")
+    
+    ' Loop through each worksheet and apply the formatting
+    For i = LBound(sheetNames) To UBound(sheetNames)
+        Set ws = ThisWorkbook.Sheets(sheetNames(i))
+        
+        ' Apply percentage number format to column K to show 2 decimal places with %
+        ws.Columns(11).NumberFormat = "0.00"
+    Next i
+        
         Dim OutputRow As Integer
         OutputRow = 2
         
@@ -73,6 +89,8 @@ Sub StockAnalysis()
                     PercentChange = 0
                 End If
                 
+                
+                
                 ' Output the results
                 ws.Cells(OutputRow, 9).Value = Ticker
                 ws.Cells(OutputRow, 10).Value = QuarterlyChange
@@ -98,6 +116,8 @@ Sub StockAnalysis()
             End If
         Next Row
     Next ws
+    
+     
     
     
 
@@ -128,12 +148,12 @@ Sub AddMaxMinFormulas()
     ws.Cells(7, 18).Formula = "=INDEX(I:I,MATCH(MAX(K:K),K:K,0))"
     ws.Cells(8, 18).Formula = "=INDEX(I:I,MATCH(MIN(K:K),K:K,0))"
     ws.Cells(9, 18).Formula = "=INDEX(I:I,MATCH(MAX(L:L),L:L,0))"
-
-        
+    
          ' Format the cells to show only 2 decimal places for values
     ws.Cells(7, 19).NumberFormat = "0.00"
     ws.Cells(8, 19).NumberFormat = "0.00"
-         
+     
+    
     ws.Cells(9, 19).NumberFormat = "0.00E+00" ' Scientific notation for large numbers
     
     
