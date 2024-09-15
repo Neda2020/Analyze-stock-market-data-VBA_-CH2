@@ -128,6 +128,13 @@ Sub AddMaxMinFormulas()
     ws.Cells(7, 18).Formula = "=INDEX(I:I,MATCH(MAX(K:K),K:K,0))"
     ws.Cells(8, 18).Formula = "=INDEX(I:I,MATCH(MIN(K:K),K:K,0))"
     ws.Cells(9, 18).Formula = "=INDEX(I:I,MATCH(MAX(L:L),L:L,0))"
+
+        
+         ' Format the cells to show only 2 decimal places for values
+    ws.Cells(7, 19).NumberFormat = "0.00"
+    ws.Cells(8, 19).NumberFormat = "0.00"
+         
+    ws.Cells(9, 19).NumberFormat = "0.00E+00" ' Scientific notation for large numbers
     
     
 End Sub
